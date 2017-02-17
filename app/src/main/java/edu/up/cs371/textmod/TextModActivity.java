@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -36,6 +37,8 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
+    private EditText editText;
 
     private Button upperButton;
 
@@ -69,6 +72,21 @@ public class TextModActivity extends ActionBarActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
+
+        editText = (TextView)findViewById(R.id.editText);
+
+
+
+        Button reverseButton = (Button)findViewById(R.id.button4);
+        reverseButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                StringBuffer text = new StringBuffer(editText.getText());
+                text.reverse();
+                editText.setText(text);
+            }
+        });
 
         //use the upper button
         upperButton = (Button)findViewById(R.id.upperButton);
@@ -105,6 +123,18 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+
+
+        //Clear Button
+        Button clearButton = (Button)findViewById(R.id.button);
+        clearButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                editText.setText(""); //clears the edit text
+            }
+        });
 
     }
 
