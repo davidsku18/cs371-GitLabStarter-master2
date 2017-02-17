@@ -16,8 +16,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
@@ -27,6 +31,12 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+
+    private EditText editText;
+
+    private Button upperButton;
+
+    private Button lowerButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -53,6 +63,15 @@ public class TextModActivity extends ActionBarActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
+
+        //use the upper button
+        upperButton = (Button)findViewById(R.id.upperButton);
+        editText = (EditText)findViewById(R.id.editText);
+        upperButton.setOnClickListener(new UpperButtonListener());
+
+        //use the lower button
+        lowerButton = (Button)findViewById(R.id.lowerButton);
+        lowerButton.setOnClickListener(new LowerButtonListener());
 
         // load the images from the resources
         //
@@ -127,5 +146,25 @@ public class TextModActivity extends ActionBarActivity {
         public void onNothingSelected(AdapterView<?> parentView) {
             // your code here
         }
+    }
+    private class UpperButtonListener implements View.OnClickListener
+    {
+        public void onClick(View v)
+        {
+            String currText = "" + editText.getText();
+            String upperText = currText.toUpperCase();
+            editText.setText(upperText);
+        }
+
+    }
+    private class LowerButtonListener implements View.OnClickListener
+    {
+        public void onClick(View v)
+        {
+            String currText = "" + editText.getText();
+            String lowerText = currText.toLowerCase();
+            editText.setText(lowerText);
+        }
+
     }
 }
