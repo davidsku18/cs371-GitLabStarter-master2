@@ -16,8 +16,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
@@ -27,7 +31,7 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
-
+    TextView EditText;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -54,6 +58,21 @@ public class TextModActivity extends ActionBarActivity {
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
 
+        EditText = (TextView)findViewById(R.id.editText);
+
+
+
+        Button reverseButton = (Button)findViewById(R.id.button4);
+        reverseButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                StringBuffer text = new StringBuffer(EditText.getText());
+                text.reverse();
+                EditText.setText(text);
+            }
+        });
+
         // load the images from the resources
         //
         // create the arraylist to hold the images
@@ -74,6 +93,9 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
 
     }
+
+
+
 
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
