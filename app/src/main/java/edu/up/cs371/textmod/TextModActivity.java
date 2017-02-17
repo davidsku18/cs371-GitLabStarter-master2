@@ -26,12 +26,23 @@ import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
 
+    private Button copy;
+    private TextView editText;
+    boolean copyBool = true;
+    private Spinner spinner;
+
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
-    TextView EditText;
+
+    private EditText editText;
+
+    private Button upperButton;
+
+    private Button lowerButton;
+
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -41,6 +52,9 @@ public class TextModActivity extends ActionBarActivity {
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
+
+        editText = (TextView) findViewById(R.id.editText);
+        copy = (Button) findViewById(R.id.copy);
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
@@ -58,7 +72,7 @@ public class TextModActivity extends ActionBarActivity {
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
 
-        EditText = (TextView)findViewById(R.id.editText);
+        editText = (TextView)findViewById(R.id.editText);
 
 
 
@@ -67,11 +81,28 @@ public class TextModActivity extends ActionBarActivity {
         {
             public void onClick(View v)
             {
-                StringBuffer text = new StringBuffer(EditText.getText());
+                StringBuffer text = new StringBuffer(editText.getText());
                 text.reverse();
-                EditText.setText(text);
+                editText.setText(text);
             }
         });
+
+        //use the upper button
+        upperButton = (Button)findViewById(R.id.upperButton);
+        editText = (EditText)findViewById(R.id.editText);
+        upperButton.setOnClickListener(new UpperButtonListener());
+
+        //use the lower button
+        lowerButton = (Button)findViewById(R.id.lowerButton);
+        lowerButton.setOnClickListener(new LowerButtonListener());
+
+        copy.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v){
+                editText.setText( editText.getText() + spinner.getSelectedItem().toString());
+            }
+        });
+
 
         // load the images from the resources
         //
@@ -93,9 +124,6 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
 
     }
-
-
-
 
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
@@ -149,5 +177,25 @@ public class TextModActivity extends ActionBarActivity {
         public void onNothingSelected(AdapterView<?> parentView) {
             // your code here
         }
+    }
+    private class UpperButtonListener implements View.OnClickListener
+    {
+        public void onClick(View v)
+        {
+            String currText = "" + editText.getText();
+            String upperText = currText.toUpperCase();
+            editText.setText(upperText);
+        }
+
+    }
+    private class LowerButtonListener implements View.OnClickListener
+    {
+        public void onClick(View v)
+        {
+            String currText = "" + editText.getText();
+            String lowerText = currText.toLowerCase();
+            editText.setText(lowerText);
+        }
+
     }
 }
