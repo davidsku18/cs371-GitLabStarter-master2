@@ -26,6 +26,11 @@ import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
 
+    private Button copy;
+    private TextView editText;
+    boolean copyBool = true;
+    private Spinner spinner;
+
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
@@ -47,6 +52,9 @@ public class TextModActivity extends ActionBarActivity {
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
+
+        editText = (TextView) findViewById(R.id.editText);
+        copy = (Button) findViewById(R.id.copy);
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
@@ -72,6 +80,14 @@ public class TextModActivity extends ActionBarActivity {
         //use the lower button
         lowerButton = (Button)findViewById(R.id.lowerButton);
         lowerButton.setOnClickListener(new LowerButtonListener());
+
+        copy.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v){
+                editText.setText( editText.getText() + spinner.getSelectedItem().toString());
+            }
+        });
+
 
         // load the images from the resources
         //
