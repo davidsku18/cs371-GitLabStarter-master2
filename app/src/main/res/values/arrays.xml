@@ -9,6 +9,10 @@
         <item>@mipmap/kitten</item>
         <item>@mipmap/nuxoll</item>
         <item>@mipmap/vegdahl</item>
+        <item>@mipmap/victor</item>
+        <item>@mipmap/kurtis</item>
+        <item>@mipmap/gavin</item>
+        <item>@mipmap/brycepicture</item>
     </array>
 
     <string-array name="spinner_names">
@@ -16,6 +20,9 @@
         <item>Dr. Andrew Nuxoll</item>
         <item>Dr. Steven Vegdahl</item>
         <item>Dr. Gavin Low</item>
+        <item>Dr. Victor</item>
+        <item>Kurtis Davidson</item>
+        <item>Dr. Bryce Amato</item>
     </string-array>
 
 </resources>

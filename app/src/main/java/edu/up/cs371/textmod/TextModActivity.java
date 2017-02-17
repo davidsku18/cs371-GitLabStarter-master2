@@ -38,8 +38,6 @@ public class TextModActivity extends ActionBarActivity {
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
-
-
     private Button upperButton;
 
     private Button lowerButton;
@@ -67,8 +65,7 @@ public class TextModActivity extends ActionBarActivity {
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, spinnerNames);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, spinnerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
