@@ -16,11 +16,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
+
+    private Button copy;
+    private TextView editText;
+    boolean copyBool = true;
+    private Spinner spinner;
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -33,10 +41,12 @@ public class TextModActivity extends ActionBarActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_mod);
+
+        editText = (TextView) findViewById(R.id.editText);
+        copy = (Button) findViewById(R.id.copy);
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
@@ -44,7 +54,7 @@ public class TextModActivity extends ActionBarActivity {
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = (Spinner)findViewById(R.id.spinner);
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
@@ -53,6 +63,14 @@ public class TextModActivity extends ActionBarActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // bind the spinner and adapter
         spinner.setAdapter(adapter);
+
+        copy.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v){
+                editText.setText( editText.getText() + spinner.getSelectedItem().toString());
+            }
+        });
+
 
         // load the images from the resources
         //
@@ -74,6 +92,8 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
 
     }
+
+
 
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
