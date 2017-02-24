@@ -80,7 +80,7 @@ public class TextModActivity extends ActionBarActivity {
                String secondHalf;
                String randLetter="";
                String currText = "" + editText.getText();
-               int randSpot = (int)Math.random()*currText.length();
+               int randSpot = (int)(Math.random()*currText.length()+1);
                double randChar = Math.random();
                if (randChar<.3)
                {
@@ -103,35 +103,6 @@ public class TextModActivity extends ActionBarActivity {
 
                editText.setText(firstHalf+randLetter+secondHalf);
 
-               /*
-               String newText = "";
-
-               String currText = "" + editText.getText();
-               currText.toLowerCase();
-               for (int i =0; i<currText.length()-1; i++)
-               {
-                   if (i % 2 == 1)
-                   {
-                       char currLetter;
-                       int x = currText.indexOf(i);
-                       currLetter = currText.charAt(x);
-                       String newLetter;
-                       newLetter = "" + currLetter;
-                       newLetter.toUpperCase();
-                       newText = newText + newLetter;
-
-                   }
-                   else
-                   {
-                       char currLetter;
-                       String newLetter;
-                       int x = currText.indexOf(i);
-                       currLetter = currText.charAt(x);
-                       newLetter = "" + currLetter;
-                       newText = newText + newLetter;
-
-                   }
-               }*/
 
            }
 
