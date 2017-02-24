@@ -8,11 +8,10 @@ package edu.up.cs371.textmod;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -31,7 +30,7 @@ public class TextModActivity extends ActionBarActivity {
     private TextView editText;
     boolean copyBool = true;
     private Spinner spinner;
-
+    private Button altCase;
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
 
@@ -72,7 +71,71 @@ public class TextModActivity extends ActionBarActivity {
 
         editText = (TextView)findViewById(R.id.editText);
 
+        altCase = (Button)findViewById(R.id.altButton);
+        altCase.setOnClickListener(new View.OnClickListener()
+        {
+           public void onClick(View v)
+           {
+               String firstHalf;
+               String secondHalf;
+               String randLetter="";
+               String currText = "" + editText.getText();
+               int randSpot = (int)Math.random()*currText.length();
+               double randChar = Math.random();
+               if (randChar<.3)
+               {
+                   randLetter = "$";
+               }
+               if (randChar>.3 && randChar<.5)
+               {
+                   randLetter = "&";
+               }
+               if (randChar>.5 && randChar<.8)
+               {
+                   randLetter = "!";
+               }
+               if (randChar>.8)
+               {
+                   randLetter = "@";
+               }
+               firstHalf = currText.substring(0,randSpot);
+               secondHalf= currText.substring(randSpot,currText.length());
 
+               editText.setText(firstHalf+randLetter+secondHalf);
+
+               /*
+               String newText = "";
+
+               String currText = "" + editText.getText();
+               currText.toLowerCase();
+               for (int i =0; i<currText.length()-1; i++)
+               {
+                   if (i % 2 == 1)
+                   {
+                       char currLetter;
+                       int x = currText.indexOf(i);
+                       currLetter = currText.charAt(x);
+                       String newLetter;
+                       newLetter = "" + currLetter;
+                       newLetter.toUpperCase();
+                       newText = newText + newLetter;
+
+                   }
+                   else
+                   {
+                       char currLetter;
+                       String newLetter;
+                       int x = currText.indexOf(i);
+                       currLetter = currText.charAt(x);
+                       newLetter = "" + currLetter;
+                       newText = newText + newLetter;
+
+                   }
+               }*/
+
+           }
+
+        });
 
         Button reverseButton = (Button)findViewById(R.id.button4);
         reverseButton.setOnClickListener(new View.OnClickListener()
