@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@color/light_blue"
     tools:context=".TextModActivity">
 
 
@@ -158,6 +158,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="0sp"
                 android:layout_weight="1" />
+
+            <Button
+                android:text="Remove Spaces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/removeSpaces" />
 
             <Spinner
                 android:layout_width="@dimen/spinner_width"

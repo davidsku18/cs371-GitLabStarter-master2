@@ -31,6 +31,7 @@ public class TextModActivity extends ActionBarActivity {
     private TextView editText;
     boolean copyBool = true;
     private Spinner spinner;
+    private Button removeSpaces;
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -57,6 +58,8 @@ public class TextModActivity extends ActionBarActivity {
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
+
+        removeSpaces = (Button) findViewById(R.id.removeSpaces);
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
@@ -89,6 +92,7 @@ public class TextModActivity extends ActionBarActivity {
         upperButton = (Button)findViewById(R.id.upperButton);
         editText = (EditText)findViewById(R.id.editText);
         upperButton.setOnClickListener(new UpperButtonListener());
+        removeSpaces.setOnClickListener(new RemoveSpacesButtonListener());
 
         //use the lower button
         lowerButton = (Button)findViewById(R.id.lowerButton);
@@ -188,6 +192,7 @@ public class TextModActivity extends ActionBarActivity {
             // your code here
         }
     }
+
     private class UpperButtonListener implements View.OnClickListener
     {
         public void onClick(View v)
@@ -207,5 +212,13 @@ public class TextModActivity extends ActionBarActivity {
             editText.setText(lowerText);
         }
 
+    }
+
+    private class RemoveSpacesButtonListener implements View.OnClickListener
+    {
+        public void onClick(View v)
+        {
+            editText.setText(editText.getText().toString().replaceAll("\\s+",""));
+        }
     }
 }
