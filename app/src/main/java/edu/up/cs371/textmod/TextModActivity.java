@@ -31,6 +31,7 @@ public class TextModActivity extends ActionBarActivity {
     private TextView editText;
     boolean copyBool = true;
     private Spinner spinner;
+    private Button randomizeButton = (Button)findViewById(R.id.randomButton);
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -188,6 +189,20 @@ public class TextModActivity extends ActionBarActivity {
             // your code here
         }
     }
+    private class RandomButton implements View.OnClickListener
+    {
+        public void onClick(View v)
+        {
+            String currText = "" + editText.getText();
+            double rand = Math.random();
+            double which = currText.length() * rand;
+            int sub = (int)which;
+            String first = currText.substring(1, sub);
+            String second = currText.substring(sub);
+            editText.setText(second + first);
+        }
+    }
+
     private class UpperButtonListener implements View.OnClickListener
     {
         public void onClick(View v)
