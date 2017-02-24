@@ -133,6 +133,19 @@ public class TextModActivity extends ActionBarActivity {
             }
         });
 
+        //Remove Periods
+        Button punctButton = (Button)findViewById(R.id.Punct);
+        punctButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                String current = "" + editText.getText();
+                String newText = current.replace('.',' ');
+                editText.setText(newText); //removes period
+            }
+        });
+
     }
 
     /**
